@@ -13,7 +13,7 @@
         <div id="principal">
             <h2>Listado de profesores</h2>
 
-            <div id="interior">
+            <div id="secundario">
 
 
             <ul>
@@ -26,7 +26,7 @@
             </ul>
             </div>
             <br />
-            <p class="boton"><a href="${contexto}/" class="enlace">Men&uacute; inicial</a></p>
+            <p class="boton"><a href="${contexto}/Iniciar" class="enlace">Men&uacute; inicial</a></p>
         </div>
 
 

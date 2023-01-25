@@ -15,12 +15,15 @@
         <div id="principal">
             <h1>Mapeo una entidad</h1>
             <h2>Elige una opci&oacute;n</h2>
-            <ol id="inicial">
-                <li><a href="eleccion?op=add" class="enlace">Alta</a></li>
-                <li><a href="eleccion?op=list" class="enlace">Listado</a></li>
-                <li><a href="eleccion?op=delete" class="enlace">Baja</a></li>
-                <li><a href="eleccion?op=update" class="enlace">Actualizaci&oacute;n</a></li>
-            </ol>
+            <div id="secundario">
+                <form action="FrontController" method="post">
+                    <p><input type="submit" name="boton" value="(C) A&ntilde;adir un nuevo registro" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(R) Visualizar todos los registros" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(U) Modificar el contenido de un registro" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(D) Eliminar uno registro" class="enlace" /></p>
+
+                </form>
+            </div>
         </div>
 
 

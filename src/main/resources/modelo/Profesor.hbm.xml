@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
   <!-- Definición de mapeo de un bean (FQCN) con la tabla correspondiente en base de datos -->
-  <class dynamic-update="true" name="es.albarregas.beans.Profesor" table="profesores">
+  <class name="es.albarregas.beans.Profesor" table="profesores">
     <!-- Primary key 
              name - nombre del atributo Java que es la primary key
              type - tipo del atributo Java.

@@ -5,17 +5,17 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Actualizar</title>
+        <title>Borrado</title>
         <link rel="stylesheet" type="text/css" href="${estilo}" />
     </head>
     <body>
 
         <div id="principal">
-            <h2>Elige uno para modificar</h2>
+            <h2>Elige uno para eliminar</h2>
 
 
 
-            <form method="post" action="control?op=update">
+            <form method="post" action="${contexto}/Delete">
                 <table>
                     <c:forEach var="item" items="${listado}">
                         <tr>
@@ -24,7 +24,7 @@
                         </tr>
                     </c:forEach>
                     <tr>
-                        <td colspan="2"><input type="submit" value="Actualizar" class="boton" /></td>
+                        <td colspan="2"><input type="submit" value="Eliminar" class="boton" /></td>
                     </tr>
                 </table>
             </form>
