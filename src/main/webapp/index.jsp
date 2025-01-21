@@ -6,9 +6,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inicio</title>
-        <link rel="stylesheet" type="text/css" href="${estilo}" />
+        <jsp:include page="/INC/cabecera.jsp">
+            <jsp:param name="titulo" value="Inicio" />
+            <jsp:param name="estilo" value="${applicationScope.estilo}" />
+        </jsp:include>
     </head>
     <body>
 
@@ -16,11 +17,11 @@
             <h1>Mapeo una entidad</h1>
             <h2>Elige una opci&oacute;n</h2>
             <div id="secundario">
-                <form action="FrontController" method="post">
-                    <p><input type="submit" name="boton" value="(C) A&ntilde;adir un nuevo registro" class="enlace" /></p>
-                    <p><input type="submit" name="boton" value="(R) Visualizar todos los registros" class="enlace" /></p>
-                    <p><input type="submit" name="boton" value="(U) Modificar el contenido de un registro" class="enlace" /></p>
-                    <p><input type="submit" name="boton" value="(D) Eliminar uno registro" class="enlace" /></p>
+                <form action="${applicationScope.contexto}/FrontController" method="post">
+                    <p><input type="submit" name="boton" value="(C) A&ntilde;adir un nuevo profesor" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(R) Visualizar todos los profesores" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(U) Modificar el contenido de un profesor" class="enlace" /></p>
+                    <p><input type="submit" name="boton" value="(D) Eliminar un profesor" class="enlace" /></p>
 
                 </form>
             </div>

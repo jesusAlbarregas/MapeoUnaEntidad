@@ -4,29 +4,49 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Borrado</title>
-        <link rel="stylesheet" type="text/css" href="${estilo}" />
+        <jsp:include page="/INC/cabecera.jsp">
+            <jsp:param name="titulo" value="Borrado" />
+            <jsp:param name="estilo" value="${applicationScope.estilo}" />
+        </jsp:include>
     </head>
     <body>
 
         <div id="principal">
-            <h2>Elige uno para eliminar</h2>
+            <h2>Elige un profesor para eliminarlo</h2>
 
-
-
-            <form method="post" action="${contexto}/Delete">
+            <form action="${applicationScope.contexto}/Delete" method="post">
                 <table>
-                    <c:forEach var="item" items="${listado}">
+
+                    <thead>
                         <tr>
-                            <td><input type="radio" name="registro" value="${item.id}" /></td>
-                            <td>${item.nombre} ${item.ape1} ${item.ape2}</td>
+                            <th style="width: 5%;">Elige</th>
+                            <th>Apellidos, nombre</th>
+
                         </tr>
-                    </c:forEach>
-                    <tr>
-                        <td colspan="2"><input type="submit" value="Eliminar" class="boton" /></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        <c:set var="primera" value="si"/>
+                        <c:forEach var="profesor" items="${requestScope.listado}">
+                            <tr>
+                                <c:set var="check" value=""/>
+                                <c:if test="${primera eq 'si'}">
+                                    <c:set var="check" value="checked" />
+                                    <c:set var="primera" value="no" />
+                                </c:if>
+                                <td><input type="radio" name="registro" value="${profesor.id}" ${pageScope.check}/></td>
+
+                                <td style="padding-left: 10px;"><c:out value="${profesor.ape1} ${profesor.ape2}, ${profesor.nombre}"/></td>
+
+
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                    
                 </table>
+                    <div class="flex">
+                        <input type="submit" name="boton" value="Eliminar" class="envio">
+                        <input type="submit" name="boton" value="Cancelar" class="envio">
+                    </div>
             </form>
 
         </div>

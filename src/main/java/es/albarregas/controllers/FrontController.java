@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        request.getRequestDispatcher(".").forward(request, response);
     }
 
     /**
@@ -81,7 +81,7 @@ public class FrontController extends HttpServlet {
             }
         } else if(!operacion.equals("C")) {
             url = "JSP/notify/aviso.jsp";
-            request.setAttribute("error", "No existen datos actualmente");
+            request.setAttribute("aviso", "No existen datos actualmente");
         }
         request.getRequestDispatcher(url).forward(request, response);
     }

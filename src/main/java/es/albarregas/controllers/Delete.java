@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author jesus
@@ -52,9 +51,27 @@ public class Delete extends HttpServlet {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IProfesorDAO pdao = daof.getProfesorDAO();
 
-        Profesor profesor = pdao.getOne(Integer.parseInt(request.getParameter("registro")));
-        pdao.delete(profesor);
-        request.getRequestDispatcher(".").forward(request, response);
+        String opcion = request.getParameter("boton");
+        String url = "";
+
+        switch (opcion) {
+            case "Eliminar":
+                Profesor profesor = pdao.getOne(Integer.parseInt(request.getParameter("registro")));
+                request.getSession().setAttribute("profesor", profesor);
+                url = "JSP/delete/confirmar.jsp";
+                break;
+            case "Confirmar":
+                pdao.delete((Profesor) request.getSession().getAttribute("profesor"));
+                request.getSession().removeAttribute("profesor");
+                url = ".";
+                break;
+            case "Cancelar":
+                if (request.getSession().getAttribute("profesor") != null) {
+                    request.getSession().removeAttribute("profesor");
+                }
+                url = ".";
+        }
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     /**

@@ -13,13 +13,13 @@
     <property name="hibernate.format_sql">true</property>
     <!-- Conexión directa -->
     <!-- Contiene la FQCN del driver de la base de datos a usar -->
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!--<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>-->
     <!-- La URL de conexión a la base de datos tal y como se usa en JDBC -->
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cursoHibernate?zeroDateTimeBehavior=convertToNull</property>
+    <!--<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate?zeroDateTimeBehavior=convertToNull</property>-->
     <!-- El usuario de la base de datos -->
-    <property name="hibernate.connection.username">java2021</property>
+    <!--<property name="hibernate.connection.username">java2025</property>-->
     <!-- La contraseña de la base de datos -->
-    <property name="hibernate.connection.password">2021</property>
+    <!--<property name="hibernate.connection.password">Java*2025</property>-->
     <!-- Autogeneración de tablas "al vuelo" en el caso de que no existieran. Posibles valores:
                 validate: valida el esquema de la BD pero sin realizar cambios en la información
                 update: sólo actualiza la BD una vez que ha sido creado el esquema
@@ -28,7 +28,7 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <!-- Pool de conexiones -->
     <!-- Indica el nombre del DataSource con el que se conectará Hibernate a la base de datos -->
-    <!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/UAU</property> -->
+     <property name="hibernate.connection.datasource">java:comp/env/jdbc/MUE</property> 
     <!-- Persistencia de la entidades como tablas en la BD. 
         Mediante ficheros XML de configuración en el directorio scr/main/resources/ -->
     <mapping resource="modelo/Profesor.hbm.xml"/>

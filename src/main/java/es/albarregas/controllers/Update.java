@@ -11,6 +11,8 @@ import es.albarregas.daofactory.DAOFactory;
 import java.io.IOException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,24 +54,31 @@ public class Update extends HttpServlet {
             throws ServletException, IOException {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IProfesorDAO pdao = daof.getProfesorDAO();
-        String url = ".";
+
         Profesor profesor = new Profesor();
 
-        if (request.getParameter("registro") != null) {
-            profesor = pdao.getOne(Integer.parseInt(request.getParameter("registro")));
-            request.setAttribute("profesor", profesor);
-            url = "JSP/update/formularioActualizar.jsp";
-        } else {
-            try {
-                BeanUtils.populate(profesor, request.getParameterMap());
+        String opcion = request.getParameter("boton");
+        String url = ".";
 
-            } catch (IllegalAccessException | InvocationTargetException ex) {
-                ex.printStackTrace();
-            }
-
-            pdao.update(profesor);
+        switch (opcion) {
+            case "Actualizar":
+                profesor = pdao.getOne(Integer.parseInt(request.getParameter("registro")));
+                request.getSession().setAttribute("profesor", profesor);
+                url = "JSP/update/formularioActualizar.jsp";
+                break;
+            case "Enviar":
+                try {
+                    BeanUtils.populate(profesor, request.getParameterMap());
+                    pdao.update(profesor);
+                    request.getSession().removeAttribute("profesor");
+                } catch (IllegalAccessException | InvocationTargetException ex) {
+                    Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
 
         }
+
+        
         request.getRequestDispatcher(url).forward(request, response);
     }
 

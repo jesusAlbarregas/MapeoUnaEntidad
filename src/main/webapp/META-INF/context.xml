@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" docBase="mapeounaentidad" path="/MapeoUnaEntidad">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/MUE" password="2019" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/cursohibernate" username="java2019"/>
+  <Resource 
+      auth="Container" 
+      driverClassName="com.mysql.cj.jdbc.Driver" 
+      maxActive="100" 
+      maxIdle="30" 
+      maxWait="10000" 
+      name="jdbc/MUE" 
+      password="Java*2025" 
+      type="javax.sql.DataSource" 
+      url="jdbc:mysql://localhost:3306/hibernate" 
+      username="java2025"/>
 </Context>

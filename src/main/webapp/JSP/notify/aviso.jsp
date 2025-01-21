@@ -4,22 +4,24 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Notificaci&oacute;n</title>
-        <link rel="stylesheet" type="text/css" href="${estilo}" />
+        <jsp:include page="/INC/cabecera.jsp">
+            <jsp:param name="titulo" value="Aviso" />
+            <jsp:param name="estilo" value="${applicationScope.estilo}" />
+        </jsp:include>
     </head>
     <body>
 
         <div id="principal">
             <h2>Listado de profesores</h2>
-            <div id="interior">
+            <div id="secundario">
 
-                <p class="error">${error}</p>
+                <p class="error">${requestScope.aviso}</p>
             
             </div>
-            <br />
-            
-            <p class="boton"><a href="${contexto}/" class="enlace">Men&uacute; inicial</a></p>
+            <div class="limpiar"></div>
+            <div class="flex">
+                <a href="${applicationScope.contexto}/FrontController" class="enlace">Men&uacute; inicial</a>
+            </div>
         </div>
 
 

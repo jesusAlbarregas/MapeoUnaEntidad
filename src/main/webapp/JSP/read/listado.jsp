@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listado</title>
-        <link rel="stylesheet" type="text/css" href="${estilo}" />
+        <jsp:include page="/INC/cabecera.jsp">
+            <jsp:param name="titulo" value="Listado" />
+            <jsp:param name="estilo" value="${applicationScope.estilo}" />
+        </jsp:include>
     </head>
     <body>
 
@@ -16,17 +17,19 @@
             <div id="secundario">
 
 
-            <ul>
-                <c:forEach var="item" items="${listado}">
+                <ul>
+                    <c:forEach var="item" items="${requestScope.listado}">
 
 
-                    <li>${item.nombre} ${item.ape1} ${item.ape2}</li>
+                        <li>${item.nombre} ${item.ape1} ${item.ape2}</li>
 
-                </c:forEach>
-            </ul>
+                    </c:forEach>
+                </ul>
             </div>
-            <br />
-            <p class="boton"><a href="${contexto}/Iniciar" class="enlace">Men&uacute; inicial</a></p>
+            <div class="limpiar"></div>
+            <div class="flex">
+                <a href="${applicationScope.contexto}/FrontController" class="enlace">Men&uacute; inicial</a>
+            </div>
         </div>
 
 

@@ -10,6 +10,8 @@ import es.albarregas.dao.IProfesorDAO;
 import es.albarregas.daofactory.DAOFactory;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,15 +55,16 @@ public class Create extends HttpServlet {
             throws ServletException, IOException {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IProfesorDAO pdao = daof.getProfesorDAO();
+        if (request.getParameter("boton").equalsIgnoreCase("enviar")) {
+            Profesor profesor = new Profesor();
+            try {
+                BeanUtils.populate(profesor, request.getParameterMap());
 
-        Profesor profesor = new Profesor();
-        try {
-            BeanUtils.populate(profesor, request.getParameterMap());
-
-        } catch (IllegalAccessException | InvocationTargetException ex) {
-            ex.printStackTrace();
+            } catch (IllegalAccessException | InvocationTargetException ex) {
+                Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pdao.add(profesor);
         }
-        pdao.add(profesor);
         request.getRequestDispatcher(".").forward(request, response);
     }
 
