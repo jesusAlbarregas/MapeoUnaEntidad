@@ -20,12 +20,12 @@
                     <div class="limpiar"></div>
                 </div>
                 <div class="dato">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre *</label>
                     <input type="text" name="nombre" size="20" value="${sessionScope.profesor.nombre}" id="nombre"/>
                     <div class="limpiar"></div>
                 </div>
                 <div class="dato">
-                    <label for="ap1">Primer apellido</label>
+                    <label for="ap1">Primer apellido *</label>
                     <input type="text" name="ape1" size="20" value="${sessionScope.profesor.ape1}" id="ap1"/>
                     <div class="limpiar"></div>
                 </div>
@@ -34,6 +34,7 @@
                     <input type="text" name="ape2" size="20" value="${sessionScope.profesor.ape2}" id="ap2"/>
                     <div class="limpiar"></div>
                 </div>
+                    <p class="error">${requestScope.aviso}</p>
                 <div class="flex">
                     <input type="submit" name="boton" class="envio" value="Enviar"/>
                     <input type="submit" name="boton" class="envio" value="Cancelar"/>

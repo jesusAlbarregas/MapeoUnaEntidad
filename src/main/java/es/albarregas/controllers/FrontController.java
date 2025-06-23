@@ -59,9 +59,7 @@ public class FrontController extends HttpServlet {
             case "C":
                 url = "JSP/create/formularioAlta.jsp";
                 break;
-            case "D":
-            case "U":
-            case "R":
+            default:
 
                 listaProf = pdao.get();
                 request.setAttribute("listado", listaProf);

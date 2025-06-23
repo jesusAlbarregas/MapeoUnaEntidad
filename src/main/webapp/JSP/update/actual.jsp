@@ -22,14 +22,14 @@
                             <th>Apellidos y nombre</th>
                         </tr>
                     </thead>
-                    <c:set var="primera" value="si"/>
+                    
                     <tbody>
-                        <c:forEach var="item" items="${requestScope.listado}">
+                        <c:forEach var="item" items="${requestScope.listado}" varStatus="i">
                             <tr>
                                 <c:set var="check" value=""/>
-                                <c:if test="${primera eq 'si'}">
+                                <c:if test="${i.count == 1}">
                                     <c:set var="check" value="checked" />
-                                    <c:set var="primera" value="no" />
+                                    
                                 </c:if>
                                 <td><input type="radio" name="registro" value="${item.id}" ${pageScope.check} /></td>
                                 <td style="padding-left: 10px;">${item.ape1} ${item.ape2}, ${item.nombre}</td>

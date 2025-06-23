@@ -25,13 +25,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:set var="primera" value="si"/>
-                        <c:forEach var="profesor" items="${requestScope.listado}">
+                        
+                        <c:forEach var="profesor" items="${requestScope.listado}" varStatus="i">
                             <tr>
                                 <c:set var="check" value=""/>
-                                <c:if test="${primera eq 'si'}">
+                                <c:if test="${i.count == 1}">
                                     <c:set var="check" value="checked" />
-                                    <c:set var="primera" value="no" />
                                 </c:if>
                                 <td><input type="radio" name="registro" value="${profesor.id}" ${pageScope.check}/></td>
 

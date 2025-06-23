@@ -8,8 +8,10 @@ package es.albarregas.controllers;
 import es.albarregas.beans.Profesor;
 import es.albarregas.dao.IProfesorDAO;
 import es.albarregas.daofactory.DAOFactory;
+import es.albarregas.models.Util;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,17 +57,26 @@ public class Create extends HttpServlet {
             throws ServletException, IOException {
         DAOFactory daof = DAOFactory.getDAOFactory();
         IProfesorDAO pdao = daof.getProfesorDAO();
+        Profesor profesor = null;
+        String url = ".";
         if (request.getParameter("boton").equalsIgnoreCase("enviar")) {
-            Profesor profesor = new Profesor();
-            try {
-                BeanUtils.populate(profesor, request.getParameterMap());
+            Enumeration<String> campos = request.getParameterNames();
+            if (!Util.isCamposVavios(campos, request, "ape2")) {
+                profesor = new Profesor();
+                try {
+                    BeanUtils.populate(profesor, request.getParameterMap());
+                    pdao.add(profesor);
 
-            } catch (IllegalAccessException | InvocationTargetException ex) {
-                Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException | InvocationTargetException ex) {
+                    Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                request.setAttribute("aviso", "Todos los campos con \"*\" son obligatorios");
+                url = "JSP/create/formularioAlta.jsp";
             }
-            pdao.add(profesor);
+            
         }
-        request.getRequestDispatcher(".").forward(request, response);
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     /**

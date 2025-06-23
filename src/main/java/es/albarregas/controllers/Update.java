@@ -8,9 +8,11 @@ package es.albarregas.controllers;
 import es.albarregas.beans.Profesor;
 import es.albarregas.dao.IProfesorDAO;
 import es.albarregas.daofactory.DAOFactory;
+import es.albarregas.models.Util;
 import java.io.IOException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -67,18 +69,23 @@ public class Update extends HttpServlet {
                 url = "JSP/update/formularioActualizar.jsp";
                 break;
             case "Enviar":
-                try {
-                    BeanUtils.populate(profesor, request.getParameterMap());
-                    pdao.update(profesor);
-                    request.getSession().removeAttribute("profesor");
-                } catch (IllegalAccessException | InvocationTargetException ex) {
-                    Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+                Enumeration<String> campos = request.getParameterNames();
+                if (!Util.isCamposVavios(campos, request, "ape2")) {
+                    try {
+                        BeanUtils.populate(profesor, request.getParameterMap());
+                        pdao.update(profesor);
+                        request.getSession().removeAttribute("profesor");
+                    } catch (IllegalAccessException | InvocationTargetException ex) {
+                        Logger.getLogger(Update.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    request.setAttribute("aviso", "Todos los campos con \"*\" son obligatorios");
+                    url = "JSP/update/formularioActualizar.jsp";
                 }
                 break;
 
         }
 
-        
         request.getRequestDispatcher(url).forward(request, response);
     }
 
